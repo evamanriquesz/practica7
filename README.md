@@ -5,39 +5,37 @@ http://localhost:8080
 
 ## PROBAR EN GITPOD 
 
-[![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/evamanriquesz/practica5)
+[![](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/evamanriquesz/practica7)
 
-Nota: En GitPod ocurre un error de compilación relacionado con Maven que no ocurría al probarlo en local.
 
 ## OBJETIVO DE LA PRÁCTICA
-El objetivo de esta práctica es familiarizarse con el uso de SpringBoot.
+El objetivo de esta práctica es desarrollar una App de Spring Boot que incluya una funcionalidad que permita persistir información utilizando la librería Spring Data JDBC con una base de datos H2.
 
 ## EXPLICACIÓN
 
-Para esta práctica, he utilizado la página que creé para Apple en la Práctica 4, adaptando el formulario de la pagina contactanos.html para 
-usar SpringBoot. 
+Para esta práctica, he utilizado la página que creé para Apple en la Práctica 4, añadiendo una última pestaña, llamada verStock.html en la que se muestra el stock de la página web de Apple.
 
 En la parte superior de cualquiera de las pantallas encontramos la cabecera, que contiene el logo de la empresa y los
 botones para cambiar a cualquiera de las otras páginas. En la parte inferior de todas ellas también encontramos un objeto 
 de paginación para poder cambiar de ventana desde ahí también, además de tres botones para acceder a las redes sociales de la marca; 
 y un botón (flechas hacia arriba), para subir al principio de la página. Puedes desplazarte por todas las páginas. 
 
-El funcionamiento de las páginas Inicio, Productos, Iniciativas sostenibles y Bolsa es idéntico al de la práctica 4.
+El funcionamiento de las páginas Inicio, Productos, Iniciativas sostenibles, Bolsa y Contáctanos es idéntico al de las prácticas 4 y 5.
 
-En la última página, Contáctanos, podemos enviar nuestra solicitud de trabajo. Aquí ese donde he aplicado SpringBoot. 
-Para poder acceder se debe escribir en el navegador  localhost:8080/MostrarForm  , ya que así te llevará directamente 
-a la página de Contáctanos. Si prefieres navegar por las otras páginas, y después acceder a Contáctanos, también es posible, 
-tanto pulsando en Contáctanos en la barra superior, como a través del objeto de paginación. 
+En la última página, verStock, podemos ver el stock de la tienda de apple de cada dispositivo en cada color. La primary key de la tabla es 
+el identificador. Las otras claves son: modelo, color y existencias. Desde esta página, si pulsas el botón, te mostrará todas las existencias de cada
+modelo, además de ofrecer tres botones para cada modelo de dispositivo. Estos botones serán de añadir existencias, borrar existencias y borrar el dispositivo. 
+Tanto para añadir como para borrar existencias he utilizado la anotación @PutMapping en el controller (que es StockController); y para borrar los dispositivos, 
+he utilizado la anotación @DeleteMapping. Para mostrarlos todos, @GetMapping. 
 
-En el formulario se te pide introducir nombre, apellidos, email, edad, ciudad y país donde te gustaría trabajar, e información
-extra que consideres importante. 
+En el archi data.sql se encuentran los inserts de los elementos iniciales de la base de datos; que luego se van modificando. 
+En la práctica se pedia usar dos @Query, que se encuentran en la clase StockRepository.java. Uno de ellos es para obtener los dispositivos dadas ciertas existencias, 
+y el otro para obtener el dispositivo correspondiente a un identificador. 
 
-Cuando introduces tus datos, y pulsas a "Enviar Formulario", se comprueba que todos los campos estén rellenos, que la longitud de 
-los campos de texto esté entre 2 y otro valor (dependiendo de cada campo), y que la edad sea mayor que 18 años. 
-Si todo va bien, se redirige al endpoint EnviarForm, que es la clase formularioAceptado, donde te dice que, efectivamente, todo es correcto. Para la validación de los campos, 
-he utilizado Java Bean Validation's @Valid constraint. 
+Para probar el funcionamiento del primero, se puede poner el el buscador (habiendo iniciado el servidor previamente): http://localhost:8080/stock/?existencias=6 y se mostrará un json de aquellos dispositivos
+de los que sólo haya 6 unidades. 
 
-Para el correcto funcionamiento del formulario he hecho uso de Thymeleaf en contactanos.html. 
+El segundo se ha utilizado en los put, y se puede probar también su funcionamiento poniendo en el buscador  
 
 Si ocurre algún error en el funcionamiento de la práctica, se te redirige a la página error.html que contiene un mensaje de error. 
 
