@@ -28,30 +28,26 @@ modelo, además de ofrecer tres botones para cada modelo de dispositivo. Estos b
 Tanto para añadir como para borrar existencias he utilizado la anotación @PutMapping en el controller (que es StockController); y para borrar los dispositivos, 
 he utilizado la anotación @DeleteMapping. Para mostrarlos todos, @GetMapping. 
 
-En el archi data.sql se encuentran los inserts de los elementos iniciales de la base de datos; que luego se van modificando. 
+En el archivo data.sql se encuentran los inserts de los elementos iniciales de la base de datos; que luego se van modificando. 
 En la práctica se pedia usar dos @Query, que se encuentran en la clase StockRepository.java. Uno de ellos es para obtener los dispositivos dadas ciertas existencias, 
 y el otro para obtener el dispositivo correspondiente a un identificador. 
 
 Para probar el funcionamiento del primero, se puede poner el el buscador (habiendo iniciado el servidor previamente): http://localhost:8080/stock/?existencias=6 y se mostrará un json de aquellos dispositivos
-de los que sólo haya 6 unidades. 
-
-El segundo se ha utilizado en los put, y se puede probar también su funcionamiento poniendo en el buscador  
+de los que sólo haya 6 unidades. El segundo se ha utilizado en los PUT y en el DELETE. También existe la posibilidad de hacer GET con esta Query pero no he implementado ningún boton para hacerlo.
 
 Si ocurre algún error en el funcionamiento de la práctica, se te redirige a la página error.html que contiene un mensaje de error. 
-
 
 
 ## PROBAR LA PRÁCTICA
 
 Para probar el correcto funcionamiento de la práctica: 
 * Navegar por las distintas páginas
-* Contáctanos
-  * Rellenar el formulario
-  * Probar a equivocarse rellenando los campos para ver cómo te avisa de los errores
-  * Cambiar de página usando los botones superiores o el objeto de paginación inferior
-  * Acceder a las redes sociales
-  * Doble click en las fechas para subir arriba
-* En la clase formularioAceptado, que es a la que se te redirige cuando envias el formulario correctamente, puedes leer los datos que 
-has introducido y volver atrás pulsando sobre cerrar
+* verStock.html
+  * Pulsar el botón de mostrar
+  * Probar a añadir existencias
+  * Probar a borrar existencias
+  * Probar a borrar dispositivos
+* Poner http://localhost:8080/stock en el buscador para ver un json con todo el stock
+* Poner http://localhost:8080/stock/?existencias=6 para probar que solo aparezcan los dispositivos de los que queden 6 unidades
 * También puedes acceder a las redes sociales o a las otras páginas, pulsando sobre sus botones
 
